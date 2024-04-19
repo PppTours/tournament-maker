@@ -1,0 +1,16 @@
+<p>Liste des teams :</p>
+<p>Teams 5vs5 :</p>
+
+<div *ngFor="let team of teams_5v5">
+    <a [routerLink]="['/teams', team.id_team]">
+        {{team.name}}
+    </a>
+</div>
+
+<p>Teams 2vs2 :</p>
+
+<div *ngFor="let team of teams_2v2">
+    <a [routerLink]="['/teams', team.id_team]">
+        {{team.name}}
+    </a>
+</div>

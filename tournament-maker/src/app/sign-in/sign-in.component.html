@@ -1,0 +1,8 @@
+<form [formGroup]="userForm"  (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <input type="text" class="form-control" id="pseudoInput" placeholder="pseudo" formControlName="pseudoInput" required/>
+        <input type="password" class="form-control" id="passwordInput" placeholder="password" formControlName="passwordInput" required/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sign In</button>
+</form>

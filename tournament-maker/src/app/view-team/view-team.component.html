@@ -1,0 +1,24 @@
+<div *ngIf="team != null">
+    <p>Informations générales</p>
+    <div >
+        <p>Nom de l'équipe : {{team.name}}</p>
+        <p>Type : {{team.type}}</p>
+        <p>Tag : {{team.tag}}</p>
+        <p>Date de création : {{team.creation_date}}</p>
+    </div>
+
+    <div *ngIf="isComplete == false && isConnected == true && isInTeam == false">
+        <button (click)="joinTeam()">Rejoindre l'équipe</button>
+    </div>
+
+    <p>Joueurs :</p>
+    <div *ngFor="let player of playersInTeam">
+        <p>- {{player.firstname}} {{player.lastname}}</p>
+    </div>
+</div>
+
+
+
+<div *ngIf="team == null">
+    <p>Cette équipe n'éxiste pas</p>
+</div>

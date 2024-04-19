@@ -1,0 +1,11 @@
+<form [formGroup]="userForm"  (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <input type="text" class="form-control" id="pseudoInput" placeholder="pseudo" formControlName="pseudoInput" required/>
+        <input type="password" class="form-control" id="passwordInput" placeholder="password" formControlName="passwordInput" required/>
+        <input type="text" class="form-control" id="firstNameInput" placeholder="firstName" formControlName="firstNameInput" required/>
+        <input type="text" class="form-control" id="lastNameInput" placeholder="lastName" formControlName="lastNameInput" required/>
+        <input type="text" class="form-control" id="idDiscordInput" placeholder="idDiscord" formControlName="idDiscordInput" required/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+</form>

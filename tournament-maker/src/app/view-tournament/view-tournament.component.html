@@ -1,0 +1,8 @@
+<div>
+    <p>Infos du tournoi {{tournament?.id_tournament}}</p>
+    <p>Nom : {{tournament?.name}}</p>
+    <p>Date de début : {{tournament?.startingDate}}</p>
+    <p>Statut : {{tournament?.status}}</p>
+    <div *ngIf="tournament?.status === 'CREATION' && sharedDataService.isConnected() && sharedDataService.getConnectedUser()?.role == 'PLAYER'">
+        <button (click)="joinTournament()">Rejoindre le tournoi</button>
+</div>

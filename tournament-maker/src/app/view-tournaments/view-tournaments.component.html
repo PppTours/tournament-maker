@@ -1,0 +1,24 @@
+<p>Liste des tournois :</p>
+<p>Tournois en création :</p>
+<div *ngFor="let tournament of tournaments_creation">
+    <a [routerLink]="['/tournament', tournament.id_tournament]">
+        {{tournament.name}}
+    </a>
+</div>
+<p>Tournois en cours :</p>
+<div *ngFor="let tournament of tournaments_in_progress">
+    <a [routerLink]="['/tournament', tournament.id_tournament]">
+        {{tournament.name}}
+    </a>
+</div>
+<p>Tournois terminés :</p>
+<div *ngFor="let tournament of tournaments_ended">
+    <a [routerLink]="['/tournament', tournament.id_tournament]">
+        {{tournament.name}}
+    </a>
+</div>
+
+
+<div *ngIf="sharedDataService.isConnected() && sharedDataService.getConnectedUser()?.role == 'ADMIN'">
+    <button (click)="createTournament()">Creer un Tournoi</button>
+</div>
