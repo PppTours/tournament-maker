@@ -8,9 +8,9 @@ import { User } from '../models/User';
 @Injectable({
   providedIn: 'root'
 })
-export class InTeamService {
+export class UserTeamService {
 
-  apiURL = this.sharedDataService.baseURL + 'in_teams';
+  apiURL = this.sharedDataService.baseURL + 'user_team';
 
   constructor(private sharedDataService : SharedDataService, private http : HttpClient) { }
 
@@ -20,7 +20,7 @@ export class InTeamService {
   }
 
   public joinTeam(id_team : number, id_user : number) : Observable<In_Team> {
-    return this.http.post<In_Team>(this.apiURL, {"id" : {"id_team": id_team, "id_user": id_user}, "owner": false});
+    return this.http.post<In_Team>(this.apiURL, {"id" : {"id_team": id_team, "id_user": id_user}, "is_owner": false});
   }
 
   public getPlayersTeam(id_team : number) : Observable<User[]> {

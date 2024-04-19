@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TeamService } from '../services/team.service';
 import { SharedDataService } from '../services/sharedData.service';
 import { UserService } from '../services/user.service';
-import { InTeamService } from '../services/in-team.service';
+import { UserTeamService } from '../services/user-team.service';
 import { User } from '../models/User';
 
 @Component({
@@ -27,7 +27,7 @@ export class ViewTeamComponent {
     private teamService : TeamService, 
     private sharedDataService : SharedDataService, 
     private userService : UserService,
-    private inTeamService : InTeamService,
+    private userTeamService : UserTeamService,
     private router : Router) {}
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class ViewTeamComponent {
     if(this.sharedDataService.isConnected()) {
       this.isConnected = true;
       if(this.sharedDataService.connectedUser != null){
-        this.inTeamService.isInTeam(this.sharedDataService.connectedUser.id_user, id_team).subscribe(isInTeam => {
+        this.userTeamService.isInTeam(this.sharedDataService.connectedUser.id_user, id_team).subscribe(isInTeam => {
           this.isInTeam = isInTeam;
         });
       }
@@ -44,25 +44,21 @@ export class ViewTeamComponent {
 
     this.teamService.getTeamById(id_team).subscribe(team => {
       this.team = team;
-      this.inTeamService.getPlayersTeam(this.team?.id_team).subscribe(players => this.playersInTeam = players);
+      this.userTeamService.getPlayersTeam(this.team?.id_team).subscribe(players => this.playersInTeam = players);
     });
     
-    this.teamService.isComplete(id_team).subscribe(isComplete => {
-      this.isComplete = isComplete;
-    });
-
-
-    
-
-    
-
+    this.teamService.isComplete(id_team).subscribe(isComplete => this.isComplete = isComplete);
   }
 
   joinTeam() {
     if(this.team != null && this.sharedDataService.connectedUser != null) {
-      this.inTeamService.joinTeam(this.team.id_team, this.sharedDataService.connectedUser.id_user).subscribe(inTeam => {
-        this.isInTeam = true;
-        this.router.navigate(['/teams/' + this.team?.id_team]);
+      this.userTeamService.joinTeam(this.team.id_team, this.sharedDataService.connectedUser.id_user).subscribe(inTeam => {
+        if(inTeam != null){
+          this.isInTeam = true;
+  
+          // Refresh the page
+          this.ngOnInit();
+        }
       });
     }
   }
