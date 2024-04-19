@@ -6,6 +6,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ViewTeamComponent } from './view-team/view-team.component';
 import { ViewTeamsComponent } from './view-teams/view-teams.component';
+import { CreateTeamComponent } from './create-team/create-team.component';
 
 export const routes: Routes = [
     { path: '', component:ViewAccueilComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { path: "sign-up", component: SignUpComponent},
     { path: "teams", component: ViewTeamsComponent},
     { path: "teams/:id_team", component: ViewTeamComponent},
+    { path : "create-team", component: CreateTeamComponent},
     { path: '**', redirectTo: ''}
 
 ];

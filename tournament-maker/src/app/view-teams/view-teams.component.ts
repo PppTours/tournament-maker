@@ -1,7 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { Team } from '../models/Team';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TeamService } from '../services/team.service';
 
 @Component({
@@ -12,12 +12,13 @@ import { TeamService } from '../services/team.service';
   styleUrl: './view-teams.component.scss'
 })
 export class ViewTeamsComponent {
+
   teams? : Team[];
   teams_2v2? : Team[];
   teams_5v5? : Team[];
 
   
-  constructor(private teamService : TeamService) {}
+  constructor(private teamService : TeamService, private router : Router) {}
 
   ngOnInit() {
     this.teamService.getTeams().subscribe(teams => {
@@ -25,5 +26,10 @@ export class ViewTeamsComponent {
       this.teams_2v2 = teams.filter(team => team.type == '2vs2');
       this.teams_5v5 = teams.filter(team => team.type == '5vs5');
     });
+  }
+
+  createTeam() {
+    // Redirect to the create team page
+    this.router.navigate(['/create-team']);
   }
 }

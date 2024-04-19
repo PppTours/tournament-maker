@@ -1,11 +1,11 @@
-export class In_Team {
+export class User_Team {
     id_team: number;
     id_user: number;
-    owner: number;
+    is_owner: boolean;
     
-    constructor(id_team: number, id_user: number, owner: number) {
+    constructor(id_team: number, id_user: number, is_owner: boolean) {
         this.id_team = id_team;
         this.id_user = id_user;
-        this.owner = owner;
+        this.is_owner = is_owner;
     }
 }

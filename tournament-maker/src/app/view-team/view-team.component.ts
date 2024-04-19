@@ -7,6 +7,7 @@ import { SharedDataService } from '../services/sharedData.service';
 import { UserService } from '../services/user.service';
 import { UserTeamService } from '../services/user-team.service';
 import { User } from '../models/User';
+import { User_Team } from '../models/In_Team';
 
 @Component({
   selector: 'app-view-team',
@@ -20,6 +21,7 @@ export class ViewTeamComponent {
   isComplete = false;
   isConnected = false;
   isInTeam = false;
+  user_Team? : User_Team;
   playersInTeam : User[] = [];
 
 
@@ -52,8 +54,9 @@ export class ViewTeamComponent {
 
   joinTeam() {
     if(this.team != null && this.sharedDataService.connectedUser != null) {
-      this.userTeamService.joinTeam(this.team.id_team, this.sharedDataService.connectedUser.id_user).subscribe(inTeam => {
-        if(inTeam != null){
+      this.userTeamService.joinTeam(this.team.id_team, this.sharedDataService.connectedUser.id_user).subscribe(user_team => {
+        if(user_team != null){
+          this.user_Team = user_team;
           this.isInTeam = true;
   
           // Refresh the page

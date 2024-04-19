@@ -1,1 +1,15 @@
-<p>create-team works!</p>
+<form [formGroup]="createTeamForm"  (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <input type="text" class="form-control" id="nameInput" placeholder="nom de l'équipe" formControlName="nameInput" required/>
+        
+        <input type="text" class="form-control" id="tagInput" placeholder="tag" formControlName="tagInput" required/>
+        
+        <select name="typeInput" id="typeInput" formControlName="typeInput">
+
+            <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Créer l'équipe</button>
+    </div>
+
+</form>

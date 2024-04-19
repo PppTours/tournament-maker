@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SharedDataService } from './sharedData.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { In_Team } from '../models/In_Team';
+import { User_Team } from '../models/In_Team';
 import { User } from '../models/User';
 
 @Injectable({
@@ -19,8 +19,8 @@ export class UserTeamService {
     return this.http.get<boolean>(url);
   }
 
-  public joinTeam(id_team : number, id_user : number) : Observable<In_Team> {
-    return this.http.post<In_Team>(this.apiURL, {"id" : {"id_team": id_team, "id_user": id_user}, "is_owner": false});
+  public joinTeam(id_team : number, id_user : number) : Observable<User_Team> {
+    return this.http.post<User_Team>(this.apiURL, {"id" : {"id_team": id_team, "id_user": id_user}, "is_owner": false});
   }
 
   public getPlayersTeam(id_team : number) : Observable<User[]> {
